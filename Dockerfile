@@ -3,7 +3,8 @@ FROM ich777/debian-baseimage
 LABEL maintainer="admin@minenet.at"
 
 RUN apt-get update && \
-	apt-get -y install --no-install-recommends lib32gcc-s1 lib32stdc++6 && \
+	apt-get -y install --no-install-recommends lib32gcc-s1 lib32stdc++6 lib32tinfo6 && \
+	cd /lib32 && ln -s libtinfo.so.6.2 libtinfo.so.5 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"
