@@ -57,9 +57,6 @@ fi
 echo "---Checking for old display lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
 chmod -R ${DATA_PERM} ${DATA_DIR}
-echo "---Checking for old display lock files---"
-find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
-chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Server ready---"
 
 echo "---Starting Xvfb server---"
