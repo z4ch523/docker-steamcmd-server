@@ -37,6 +37,7 @@ fi
 echo "---Prepare Server---"
 export WINEARCH=win64
 export WINEPREFIX=/serverdata/serverfiles/WINE64
+export DISPLAY=:99
 echo "---Checking if WINE workdirectory is present---"
 if [ ! -d ${SERVER_DIR}/WINE64 ]; then
 	echo "---WINE workdirectory not found, creating please wait...---"
@@ -56,11 +57,15 @@ fi
 echo "---Checking for old display lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
 chmod -R ${DATA_PERM} ${DATA_DIR}
+echo "---Checking for old display lock files---"
+find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
+chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Server ready---"
 
-echo "---Sleep zZzZz---"
-sleep infinity
+echo "---Starting Xvfb server---"
+Xvfb :99 -screen scrn 640x480x16 2>/dev/null &
+sleep 3
 
 echo "---Start Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/srcds_run -game ${GAME_NAME} ${GAME_PARAMS} -console +port ${GAME_PORT}
+wine64 start srcds.exe -console -game ${GAME_NAME} ${GAME_PARAMS} +port ${GAME_PORT}
