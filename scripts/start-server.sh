@@ -66,3 +66,5 @@ sleep 3
 echo "---Start Server---"
 cd ${SERVER_DIR}
 wine64 start srcds.exe -console -game ${GAME_NAME} ${GAME_PARAMS} +port ${GAME_PORT}
+sleep 1
+tail --pid=$(pgrep srcds.exe) -f /dev/null
