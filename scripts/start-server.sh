@@ -46,9 +46,18 @@ else
     echo "---server.cfg found..."
 fi
 
-cp ${DATA_DIR}/steamcmd/linux64/* ${SERVER_DIR}
-chmod -R ${DATA_PERM} ${DATA_DIR}
+if [ "${FORCE_X86}" == "true" ]; then
+    cp ${STEAMCMD_DIR}/linux32/* ${SERVER_DIR}
+    chmod -R ${DATA_PERM} ${DATA_DIR}
 
-echo "---Start Server---"
-cd ${SERVER_DIR}
-./arma3server ${GAME_PARAMS}
+    echo "---Start Server---"
+    cd ${SERVER_DIR}
+    ./arma3server ${GAME_PARAMS}
+else
+    cp ${STEAMCMD_DIR}/linux64/* ${SERVER_DIR}
+    chmod -R ${DATA_PERM} ${DATA_DIR}
+
+    echo "---Start Server---"
+    cd ${SERVER_DIR}
+    ./arma3server_x64 ${GAME_PARAMS}
+fi
