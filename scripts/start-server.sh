@@ -23,7 +23,7 @@ else
   echo "---Updating game, please wait!---"
   git restore
   sleep 1
-  git pull "https://github.com/Uuvana-Studios/longvinter-linux-server.git" main ${SERVER_DIR}
+  git pull "https://github.com/Uuvana-Studios/longvinter-linux-server.git" main
 fi
 
 echo "---Prepare Server---"
