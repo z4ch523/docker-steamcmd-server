@@ -55,4 +55,4 @@ echo "---Server ready---"
 
 echo "---Start Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/Longvinter/Binaries/Linux/LongvinterServer-Linux-Shipping Longvinter ${GAME_PARAMS}
+${SERVER_DIR}/Longvinter/Binaries/Linux/LongvinterServer-Linux-Shipping Longvinter QueryPort=${GAME_PORT} ${GAME_PARAMS}
