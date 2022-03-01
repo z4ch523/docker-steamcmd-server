@@ -17,6 +17,9 @@ else
     +quit
 fi
 
+echo "---Sleep zZzZz---"
+sleep infinity
+
 echo "---Update Server---"
 if [ "${USERNAME}" == "" ]; then
     if [ "${VALIDATE}" == "true" ]; then
@@ -63,8 +66,7 @@ fi
 chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Server ready---"
 
-echo "---Sleep zZzZz---"
-sleep infinity
+
 
 echo "---Start Server---"
 cd ${SERVER_DIR}
