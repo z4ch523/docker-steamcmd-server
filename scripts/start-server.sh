@@ -11,10 +11,6 @@ if [ "${USERNAME}" == "" ]; then
   ${STEAMCMD_DIR}/steamcmd.sh \
   +login anonymous \
   +quit
-else
-  ${STEAMCMD_DIR}/steamcmd.sh \
-  +login ${USERNAME} ${PASSWRD} \
-  +quit
 fi
 
 echo "---Update Server---"
@@ -43,7 +39,7 @@ if [ ! -f ${SERVER_DIR}/Longvinter/Saved/Config/LinuxServer/Game.ini ]; then
 ServerName=Longvinter Docker
 MaxPlayers=32
 ServerMOTD=Welcome to Longvinter running in Docker!
-Password=
+Password=Docker
 CommunityWebsite=unraid.net
 
 [/Game/Blueprints/Server/GM_Longvinter.GM_Longvinter_C]
