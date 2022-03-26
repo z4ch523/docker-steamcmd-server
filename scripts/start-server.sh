@@ -51,6 +51,10 @@ else
 fi
 
 echo "---Prepare Server---"
+if [ ! -f ~/.screenrc ]; then
+    echo "defscrollback 30000
+bindkey \"^C\" echo 'Blocked. Please use to command \"stop\" to shutdown the server or close this window to exit the terminal.'" > ~/.screenrc
+fi
 echo "---Checking for old logs---"
 find ${SERVER_DIR} -name "masterLog.*" -exec rm -f {} \;
 screen -wipe 2&>/dev/null
