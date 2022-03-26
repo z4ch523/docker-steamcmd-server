@@ -51,12 +51,18 @@ else
 fi
 
 echo "---Prepare Server---"
+echo "---Checking for old logs---"
+find ${SERVER_DIR} -name "masterLog.*" -exec rm -f {} \;
+screen -wipe 2&>/dev/null
 chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Server ready---"
 
-echo "---Sleep zZzZz---"
-sleep infinity
-
 echo "---Start Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/srcds_run -game ${GAME_NAME} ${GAME_PARAMS} -console +port ${GAME_PORT}
+screen -S Necesse -L -Logfile ${SERVER_DIR}/masterLog.0 -d -m ${SERVER_DIR}/jre/bin/java ${EXTRA_JVM_PARAMS} -jar Server.jar -ip 0.0.0.0 -world ${WORLD_NAME} -nogui ${GAME_PARAMS}
+sleep 2
+if [ "${ENABLE_WEBCONSOLE}" == "true" ]; then
+    /opt/scripts/start-gotty.sh 2>/dev/null &
+fi
+/opt/scripts/start-watchdog.sh &
+tail -f ${SERVER_DIR}/masterLog.0
