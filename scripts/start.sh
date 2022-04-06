@@ -2,7 +2,7 @@
 echo "---Checking if UID: ${UID} matches user---"
 usermod -u ${UID} ${USER}
 echo "---Checking if GID: ${GID} matches user---"
-groupmod -g ${GID} ${GROUP} 
+groupmod -g ${GID} ${USER} 
 usermod -g ${GID} ${USER}
 echo "---Setting umask to ${UMASK}---"
 umask ${UMASK}
