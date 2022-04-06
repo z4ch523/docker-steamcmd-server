@@ -20,13 +20,15 @@ ENV GID=100
 ENV USERNAME=""
 ENV PASSWRD=""
 ENV USER="steam"
+ENV GROUP="steam"
 ENV DATA_PERM=770
 
-RUN mkdir $DATA_DIR && \
-	mkdir $STEAMCMD_DIR && \
-	mkdir $SERVER_DIR && \
-	useradd -d $DATA_DIR -s /bin/bash $USER && \
-	chown -R $USER $DATA_DIR && \
+RUN mkdir ${DATA_DIR} && \
+	mkdir ${STEAMCMD_DIR} && \
+	mkdir ${SERVER_DIR} && \
+	useradd -d ${DATA_DIR} -s /bin/bash ${USER} && \
+	groupadd ${GROUP} && \
+	chown -R ${USER} ${DATA_DIR} && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
