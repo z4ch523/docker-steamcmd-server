@@ -8,12 +8,18 @@ echo "---Setting umask to ${UMASK}---"
 umask ${UMASK}
 
 echo "---Checking for optional scripts---"
-if [ -f /opt/scripts/user.sh ]; then
-	echo "---Found optional script, executing---"
+if [ -f /opt/custom/user.sh ]; then
+  cp -f /opt/custom/user.sh /opt/scripts/start-user.sh
+elif [ -f /opt/scripts/user.sh ]; then
+  cp -f /opt/scripts/user.sh /opt/scripts/start-user.sh
+fi
+
+if [ -f /opt/scripts/start-user.sh ]; then
+    echo "---Found optional script, executing---"
     chmod -f +x /opt/scripts/user.sh ||:
     /opt/scripts/user.sh
 else
-	echo "---No optional script found, continuing---"
+    echo "---No optional script found, continuing---"
 fi
 
 echo "---Starting...---"
