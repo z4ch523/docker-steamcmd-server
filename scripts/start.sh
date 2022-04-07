@@ -13,8 +13,8 @@ cp -f /opt/scripts/user.sh /opt/scripts/start-user.sh >> /dev/null ||:
 
 if [ -f /opt/scripts/start-user.sh ]; then
     echo "---Found optional script, executing---"
-    chmod -f +x /opt/scripts/user.sh ||:
-    /opt/scripts/user.sh || echo "---Optional Script has thrown an Error---"
+    chmod -f +x /opt/scripts/start-user.sh.sh ||:
+    /opt/scripts/start-user.sh || echo "---Optional Script has thrown an Error---"
 else
     echo "---No optional script found, continuing---"
 fi
